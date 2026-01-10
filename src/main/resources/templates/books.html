@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Sve knjige</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Sve knjige</h1>
+
+<a th:href="@{/books/create}">Dodaj novu knjigu</a>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Naslov</th>
+    <th>Autor</th>
+    <th>Kategorija</th>
+    <th>Godina</th>
+    <th>Akcije</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="book : ${books}">
+    <td th:text="${book.id}">ID</td>
+    <td th:text="${book.title}">Naslov</td>
+    <td th:text="${book.author.name}">Autor</td>
+    <td th:text="${book.category.name}">Kategorija</td>
+    <td th:text="${book.year}">Godina</td>
+    <td>
+      <a th:href="@{'/books/edit/' + ${book.id}}">Izmeni</a>
+      <form th:action="@{'/books/delete/' + ${book.id}}" method="post" style="display:inline">
+        <button type="submit">Obriši</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

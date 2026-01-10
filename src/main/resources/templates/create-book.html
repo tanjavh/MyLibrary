@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Kreiraj knjigu</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Kreiraj knjigu</h1>
+<form th:action="@{/books/create}" th:object="${book}" method="post">
+  <div>
+    <label>Title:</label>
+    <input type="text" th:field="*{title}" required/>
+  </div>
+  <div>
+    <label>Author:</label>
+    <select th:field="*{author}" required>
+      <option th:each="author : ${authors}" th:value="${author}" th:text="${author.name}"></option>
+    </select>
+  </div>
+  <div>
+    <label>Category:</label>
+    <select th:field="*{category}" required>
+      <option th:each="category : ${categories}" th:value="${category}" th:text="${category.name}"></option>
+    </select>
+  </div>
+  <button type="submit">Kreiraj</button>
+</form>
+<a th:href="@{/books}">Nazad na sve knjige</a>
+</body>
+</html>
