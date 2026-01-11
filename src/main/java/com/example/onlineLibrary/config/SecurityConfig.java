@@ -2,10 +2,11 @@ package com.example.onlineLibrary.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import com.example.onlineLibrary.service.UserService;
+import com.example.onlineLibrary.userLoanMicroservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,8 +14,10 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
 
     private final UserService userService; // UserService implementira UserDetailsService
 
@@ -40,9 +43,9 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/users/login")          // GET stranica za login
-                        .loginProcessingUrl("/login")       // URL na koji forma šalje POST
-                        .defaultSuccessUrl("/", true)       // gde se ide posle uspešnog login-a
+                        .loginPage("/users/login")           // GET stranica
+                        .loginProcessingUrl("/users/login")  // POST URL koji Spring Security obrađuje
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
                 .logout(logout -> logout

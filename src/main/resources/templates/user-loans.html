@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Moje pozajmice</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Moje pozajmice</h1>
+
+<!-- Flash poruke -->
+<div th:if="${success}" class="flash-success" th:text="${success}"></div>
+<div th:if="${error}" class="flash-error" th:text="${error}"></div>
+
+<table>
+  <thead>
+  <tr>
+    <th>Knjiga</th>
+    <th>Datum pozajmice</th>
+    <th>Vraćena</th>
+    <th>Datum vraćanja</th>
+    <th>Akcija</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="loan : ${loans}">
+    <td th:text="${loan.book.title}">Knjiga</td>
+    <td th:text="${loan.loanDate}">Datum pozajmice</td>
+    <td th:text="${loan.returned}">Vraćena</td>
+    <td th:text="${loan.returnDate}">Datum vraćanja</td>
+    <td>
+      <form th:if="${!loan.returned}" th:action="@{'/loans/return/' + ${loan.id}}" method="post">
+        <button type="submit">Vrati knjigu</button>
+      </form>
+      <span th:if="${loan.returned}">Vraćeno</span>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

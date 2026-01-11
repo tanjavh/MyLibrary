@@ -1,7 +1,7 @@
 package com.example.onlineLibrary.security;
 
-import com.example.onlineLibrary.model.entity.User;
-import com.example.onlineLibrary.repository.UserRepository;
+import com.example.onlineLibrary.userLoanMicroservice.model.entity.User;
+import com.example.onlineLibrary.userLoanMicroservice.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
