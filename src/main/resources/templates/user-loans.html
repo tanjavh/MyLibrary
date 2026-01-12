@@ -15,6 +15,8 @@
   <thead>
   <tr>
     <th>Knjiga</th>
+    <th>Autor</th>
+    <th>Kategorija</th>
     <th>Datum pozajmice</th>
     <th>Vraćena</th>
     <th>Datum vraćanja</th>
@@ -23,12 +25,14 @@
   </thead>
   <tbody>
   <tr th:each="loan : ${loans}">
-    <td th:text="${loan.book.title}">Knjiga</td>
+    <td th:text="${loan.bookTitle}">Knjiga</td>
+    <td th:text="${loan.bookAuthor}">Autor</td>
+    <td th:text="${loan.bookCategory}">Kategorija</td>
     <td th:text="${loan.loanDate}">Datum pozajmice</td>
-    <td th:text="${loan.returned}">Vraćena</td>
+    <td th:text="${loan.returned} ? 'Da' : 'Ne'">Vraćena</td>
     <td th:text="${loan.returnDate}">Datum vraćanja</td>
     <td>
-      <form th:if="${!loan.returned}" th:action="@{'/loans/return/' + ${loan.id}}" method="post">
+      <form th:if="${!loan.returned}" th:action="@{'/loans/return/' + ${loan.loanId}}" method="post">
         <button type="submit">Vrati knjigu</button>
       </form>
       <span th:if="${loan.returned}">Vraćeno</span>

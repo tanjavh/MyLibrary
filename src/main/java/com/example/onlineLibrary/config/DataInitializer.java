@@ -1,10 +1,10 @@
 package com.example.onlineLibrary.config;
 
-import com.example.onlineLibrary.userLoanMicroservice.model.entity.Role;
-import com.example.onlineLibrary.userLoanMicroservice.model.entity.User;
-import com.example.onlineLibrary.userLoanMicroservice.model.enums.RoleName;
-import com.example.onlineLibrary.userLoanMicroservice.repository.RoleRepository;
-import com.example.onlineLibrary.userLoanMicroservice.repository.UserRepository;
+import com.example.onlineLibrary.model.entity.Role;
+import com.example.onlineLibrary.model.entity.User;
+import com.example.onlineLibrary.model.enums.RoleName;
+import com.example.onlineLibrary.repository.RoleRepository;
+import com.example.onlineLibrary.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
